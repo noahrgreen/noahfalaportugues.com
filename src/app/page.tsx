@@ -1,9 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
+import { getSortedPosts } from "@/content/posts";
 import { getLatestVideos } from "@/lib/youtube";
 
 export const revalidate = 21600;
 
 function formatDate(isoDate: string): string {
+  if (!isoDate) {
+    return "";
+  }
+
   const date = new Date(isoDate);
   if (Number.isNaN(date.getTime())) {
     return "";
@@ -17,51 +23,55 @@ function formatDate(isoDate: string): string {
 }
 
 export default async function Home() {
-  const { videos, usedFallback } = await getLatestVideos();
+  const videos = await getLatestVideos();
+  const latestPost = getSortedPosts()[0];
 
   return (
-    <main className="page-shell">
+    <main className="site-shell page-shell">
       <section className="hero section">
-        <p className="kicker">Noah Fala Portugues</p>
-        <h1>Brazilian Portuguese for English speakers, built for real use.</h1>
-        <p className="hero-copy">
-          Clear structure, practical communication, and cultural context without
-          noise.
-        </p>
-        <div className="hero-actions">
-          <a
-            className="button button-primary"
-            href="https://www.youtube.com/@NoahFalaPortugues"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Watch on YouTube
-          </a>
-          <a className="button button-secondary" href="#latest-videos">
-            Explore videos
-          </a>
+        <div className="hero-bg" aria-hidden="true" />
+        <div className="hero-content">
+          <p className="kicker">Noah Fala Português</p>
+          <h1>
+            Learning Brazilian Portuguese as an adult — clearly, deliberately,
+            and for real use.
+          </h1>
+          <p className="hero-copy">
+            Speak naturally. Understand real conversations. Move beyond
+            textbook Portuguese.
+          </p>
+          <div className="hero-actions">
+            <a
+              className="button button-primary"
+              href="https://www.youtube.com/@NoahFalaPortugues"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Watch on YouTube
+            </a>
+            <a className="button button-secondary" href="#ultimos-videos">
+              Explore vídeos
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="latest-videos" className="section">
+      <section id="ultimos-videos" className="section">
         <div className="section-header">
-          <h2>Latest videos</h2>
+          <h2>Últimos vídeos</h2>
           <a
             className="text-link"
             href="https://www.youtube.com/@NoahFalaPortugues/videos"
             target="_blank"
             rel="noreferrer"
           >
-            View all
+            Ver todos
           </a>
         </div>
-
-        {usedFallback ? (
-          <p className="support-note">
-            Live feed is temporarily unavailable. You can still access the
-            channel directly.
-          </p>
-        ) : null}
+        <p className="section-intro">
+          Recent videos from the channel, focused on real Brazilian Portuguese
+          usage, common mistakes, and practical understanding.
+        </p>
 
         <div className="video-grid">
           {videos.map((video) => (
@@ -83,7 +93,7 @@ export default async function Home() {
                     {video.title}
                   </a>
                 </h3>
-                {video.publishedAt ? (
+                {formatDate(video.publishedAt) ? (
                   <p>{formatDate(video.publishedAt)}</p>
                 ) : null}
               </div>
@@ -93,24 +103,74 @@ export default async function Home() {
       </section>
 
       <section className="section about">
-        <h2>About</h2>
+        <h2>Sobre</h2>
         <p>
-          Noah Fala Portugues is an English-language-facing Brazilian
-          Portuguese project focused on practical communication, disciplined
-          study, and cultural seriousness.
+          Noah Fala Português documents the process of learning Brazilian
+          Portuguese as an adult English speaker — with a focus on real
+          communication, cultural context, and disciplined study.
+        </p>
+        <p>
+          The goal is not to teach textbook language, but to understand how
+          Portuguese is actually used: in conversation, in training
+          environments, and in everyday life.
+        </p>
+        <p>
+          This includes patterns that make the language easier to understand,
+          mistakes that English speakers tend to make, and observations that
+          only become clear through sustained practice.
+        </p>
+        <p>
+          Everything here is part of an ongoing process — structured, practical,
+          and grounded in real use.
         </p>
       </section>
 
-      <footer className="site-footer section">
-        <p>© {new Date().getFullYear()} Noah Fala Portugues</p>
+      <section className="section flashcards">
+        <h2>Flashcards</h2>
+        <p>
+          I use spaced repetition as part of my study process for Brazilian
+          Portuguese.
+        </p>
+        <p>
+          The decks on Brainscape include vocabulary, phrases, and topic-based
+          material that I build and refine over time as I learn.
+        </p>
+        <p>
+          They are not a complete system, but a working set of tools tied to
+          the way I study and review the language.
+        </p>
         <a
-          href="https://www.youtube.com/@NoahFalaPortugues"
+          className="button button-primary"
+          href="https://www.brainscape.com/profiles/1519861"
           target="_blank"
           rel="noreferrer"
         >
-          YouTube
+          View my Brainscape profile
         </a>
-      </footer>
+        <p className="mini-note">Some deck access may require a Brainscape login.</p>
+      </section>
+
+      <section className="section blog-preview">
+        <div className="section-header">
+          <h2>Blog</h2>
+          <Link className="text-link" href="/blog">
+            Ver blog
+          </Link>
+        </div>
+        <p className="section-intro">
+          Reflections, breakdowns, and patterns from learning Brazilian
+          Portuguese as an adult.
+        </p>
+        {latestPost ? (
+          <article className="post-preview-card">
+            <p className="small-label">Artigo mais recente</p>
+            <h3>
+              <Link href={`/blog/${latestPost.slug}`}>{latestPost.title}</Link>
+            </h3>
+            <p>{latestPost.excerpt}</p>
+          </article>
+        ) : null}
+      </section>
     </main>
   );
 }

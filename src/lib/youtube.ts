@@ -4,10 +4,11 @@ const YT_API_BASE = "https://www.googleapis.com/youtube/v3";
 const YT_FALLBACK_VIDEOS: VideoCard[] = [
   {
     id: "channel-home",
-    title: "Watch Noah Fala Portugues on YouTube",
-    thumbnailUrl: "https://i.ytimg.com/vi/HNtPnf8sgnM/hqdefault.jpg",
-    publishedAt: new Date(0).toISOString(),
-    videoUrl: "https://www.youtube.com/@NoahFalaPortugues",
+    title: "Noah Fala Português on YouTube",
+    thumbnailUrl:
+      "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1400&q=80",
+    publishedAt: "",
+    videoUrl: "https://www.youtube.com/@NoahFalaPortugues/videos",
   },
 ];
 
@@ -34,7 +35,7 @@ type YtSearchResponse = {
 
 async function fetchJson<T>(url: string): Promise<T> {
   const res = await fetch(url, {
-    next: { revalidate: 60 * 60 * 6 },
+    next: { revalidate: 21600 },
   });
 
   if (!res.ok) {
@@ -81,7 +82,7 @@ function mapSearchItems(items: YtSearchItem[] | undefined): VideoCard[] {
         item.snippet?.thumbnails?.medium?.url ??
         item.snippet?.thumbnails?.default?.url;
 
-      if (!id || !title || !publishedAt || !thumbnailUrl) {
+      if (!id || !title || !thumbnailUrl) {
         return null;
       }
 
@@ -89,25 +90,22 @@ function mapSearchItems(items: YtSearchItem[] | undefined): VideoCard[] {
         id,
         title,
         thumbnailUrl,
-        publishedAt,
+        publishedAt: publishedAt ?? "",
         videoUrl: `https://www.youtube.com/watch?v=${id}`,
       } satisfies VideoCard;
     })
     .filter((item): item is VideoCard => item !== null);
 }
 
-export async function getLatestVideos(): Promise<{
-  videos: VideoCard[];
-  usedFallback: boolean;
-}> {
+export async function getLatestVideos(): Promise<VideoCard[]> {
   const apiKey = process.env.YOUTUBE_API_KEY;
   if (!apiKey) {
-    return { videos: YT_FALLBACK_VIDEOS, usedFallback: true };
+    return YT_FALLBACK_VIDEOS;
   }
 
   const channelId = await resolveChannelId(apiKey);
   if (!channelId) {
-    return { videos: YT_FALLBACK_VIDEOS, usedFallback: true };
+    return YT_FALLBACK_VIDEOS;
   }
 
   const searchUrl =
@@ -117,13 +115,8 @@ export async function getLatestVideos(): Promise<{
   try {
     const payload = await fetchJson<YtSearchResponse>(searchUrl);
     const videos = mapSearchItems(payload.items);
-
-    if (videos.length === 0) {
-      return { videos: YT_FALLBACK_VIDEOS, usedFallback: true };
-    }
-
-    return { videos, usedFallback: false };
+    return videos.length > 0 ? videos : YT_FALLBACK_VIDEOS;
   } catch {
-    return { videos: YT_FALLBACK_VIDEOS, usedFallback: true };
+    return YT_FALLBACK_VIDEOS;
   }
 }
