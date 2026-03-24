@@ -16,8 +16,14 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <span>Instagram</span>
-              <small>Em breve</small>
+              <a
+                href="https://www.instagram.com/noahfalaportugues/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram profile"
+              >
+                Instagram
+              </a>
             </li>
             <li>
               <span>TikTok</span>
