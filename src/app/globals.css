@@ -84,9 +84,21 @@ button:focus-visible {
 }
 
 .brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-serif), "Fraunces", serif;
   font-size: 1.1rem;
   letter-spacing: 0.02em;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--border), var(--text) 15%);
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .main-nav {
@@ -489,6 +501,11 @@ h3 {
   .site-header {
     flex-wrap: wrap;
     padding: 10px 0;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
   }
 
   .main-nav {
