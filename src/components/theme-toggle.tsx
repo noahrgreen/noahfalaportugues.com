@@ -36,6 +36,7 @@ export function ThemeToggle() {
     <button
       type="button"
       className="theme-toggle"
+      aria-pressed={theme === "dark"}
       onClick={() => {
         setTheme(nextTheme);
         applyTheme(nextTheme);
@@ -44,7 +45,7 @@ export function ThemeToggle() {
       aria-label="Modo escuro"
       title="Modo escuro"
     >
-      Modo escuro: {theme === "dark" ? "on" : "off"}
+      Modo escuro
     </button>
   );
 }

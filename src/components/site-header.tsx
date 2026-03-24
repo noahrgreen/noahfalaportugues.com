@@ -18,6 +18,13 @@ export function SiteHeader() {
           >
             YouTube
           </a>
+          <a
+            href="https://www.brainscape.com/profiles/1519861"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Brainscape
+          </a>
         </nav>
         <ThemeToggle />
       </div>

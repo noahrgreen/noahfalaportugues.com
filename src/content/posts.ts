@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
     slug: "how-i-use-spaced-repetition-to-study-brazilian-portuguese",
     title: "How I Use Spaced Repetition to Study Brazilian Portuguese",
     date: "2026-03-23",
-    tag: "Study Method",
+    tag: "SRS",
     excerpt:
       "A practical look at why spaced repetition helps with retention, where it fits, and where it does not.",
     content: [
@@ -32,12 +32,24 @@ export const blogPosts: BlogPost[] = [
     slug: "patterns-i-keep-noticing-in-brazilian-portuguese",
     title: "Patterns I Keep Noticing in Brazilian Portuguese",
     date: "2026-03-18",
-    tag: "Reflections",
+    tag: "Estudo",
     excerpt:
       "A short breakdown of recurring patterns that make spoken Brazilian Portuguese easier to process in real conversations.",
     content: [
       "This is a rolling note on recurring patterns that keep showing up in real speech.",
       "I treat this as a practical log: what I hear, what I misread, and what improved once I paid closer attention to context.",
+    ],
+  },
+  {
+    slug: "bjj-terms-that-changed-how-i-hear-portuguese",
+    title: "BJJ Terms That Changed How I Hear Portuguese",
+    date: "2026-03-12",
+    tag: "BJJ",
+    excerpt:
+      "How repeated exposure to training-language changed recall, listening speed, and confidence in context.",
+    content: [
+      "Training environments force faster listening decisions than passive study.",
+      "This note captures terms and phrase patterns that became easier only after repeated exposure and targeted review.",
     ],
   },
 ];

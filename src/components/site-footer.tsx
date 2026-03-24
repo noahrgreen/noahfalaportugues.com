@@ -2,6 +2,7 @@ export function SiteFooter() {
   return (
     <footer className="site-footer-wrap">
       <div className="site-shell site-footer-global">
+        <p>© Noah Fala Português</p>
         <div>
           <p className="footer-label">Redes sociais</p>
           <ul className="social-list">
@@ -22,9 +23,17 @@ export function SiteFooter() {
               <span>TikTok</span>
               <small>Em breve</small>
             </li>
+            <li>
+              <a
+                href="https://www.brainscape.com/profiles/1519861"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Brainscape
+              </a>
+            </li>
           </ul>
         </div>
-        <p>© Noah Fala Português</p>
       </div>
     </footer>
   );

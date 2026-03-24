@@ -19,7 +19,7 @@ export default function BlogPage() {
       <section className="section">
         <h1>Blog</h1>
         <p className="section-intro">
-          Reflections, breakdowns, and patterns from learning Brazilian
+          Reflections, breakdowns, and study notes from learning Brazilian
           Portuguese as an adult.
         </p>
       </section>
@@ -28,6 +28,7 @@ export default function BlogPage() {
         <section className="section">
           <p className="small-label">Artigo mais recente</p>
           <article className="featured-post">
+            {latest.tag ? <span className="tag-pill">{latest.tag}</span> : null}
             <h2>
               <Link href={`/blog/${latest.slug}`}>{latest.title}</Link>
             </h2>
@@ -43,6 +44,7 @@ export default function BlogPage() {
           <div className="post-list">
             {rest.map((post) => (
               <article className="post-item" key={post.slug}>
+                {post.tag ? <span className="tag-pill">{post.tag}</span> : null}
                 <h3>
                   <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                 </h3>

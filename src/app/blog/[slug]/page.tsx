@@ -44,7 +44,9 @@ export default async function BlogPostPage({
           ))}
         </div>
 
-        <div className="article-links">
+        <aside className="callout-box">
+          <p className="small-label">Study tools</p>
+          <p>Explore my Brainscape decks.</p>
           <a
             className="button button-primary"
             href="https://www.brainscape.com/profiles/1519861"
@@ -53,14 +55,21 @@ export default async function BlogPostPage({
           >
             View my Brainscape profile
           </a>
+        </aside>
+
+        <aside className="callout-box muted-callout">
+          <p className="small-label">Further reading</p>
           <a
             className="text-link"
             href="https://www.brainscape.com/academy/spaced-repetition/"
             target="_blank"
             rel="noreferrer"
           >
-            Further reading on spaced repetition
+            Brainscape on spaced repetition
           </a>
+        </aside>
+
+        <div className="article-links">
           <Link className="text-link" href="/blog">
             Back to blog
           </Link>
