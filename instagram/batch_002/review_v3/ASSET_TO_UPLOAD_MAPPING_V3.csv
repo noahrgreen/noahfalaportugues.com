@@ -1,0 +1,6 @@
+content_id,format,assets,caption_ref,hashtags_ref,cta_style,status
+CAR01_V3,carousel,"CAR_01_Mistake_S01_V3.png|CAR_01_Mistake_S02_V3.png|CAR_01_Mistake_S03_V3.png|CAR_01_Mistake_S04_V3.png",CAROUSEL 01,CAROUSEL 01,save+share,PENDING_APPROVAL
+REEL01_V3,reel,"REEL_01_RealPhrase_Cover_V3.png|REEL_01_RealPhrase_oncamera_draft.md|REEL_01_RealPhrase_subtitles.srt",REEL 01,REEL 01,follow,PENDING_FOOTAGE
+CAR02_V3,carousel,"CAR_02_Study_S01_V3.png|CAR_02_Study_S02_V3.png|CAR_02_Study_S03_V3.png|CAR_02_Study_S04_V3.png",CAROUSEL 02,CAROUSEL 02,share,PENDING_APPROVAL
+REEL02_V3,reel,"REEL_02_BJJPhrase_Cover_V3.png|REEL_02_BJJPhrase_oncamera_draft.md|REEL_02_BJJPhrase_subtitles.srt",REEL 02,REEL 02,watch_more,PENDING_FOOTAGE
+CAR03_V3,carousel,"CAR_03_SRS_S01_V3.png|CAR_03_SRS_S02_V3.png|CAR_03_SRS_S03_V3.png|CAR_03_SRS_S04_V3.png",CAROUSEL 03,CAROUSEL 03,comment,PENDING_APPROVAL

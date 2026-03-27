@@ -1,0 +1,6 @@
+content_id,format,assets,caption_ref,hashtags_ref,cta_style,status
+B003_CAR01,carousel,"B003_CAR01_Mistake_S01.png|B003_CAR01_Mistake_S02.png|B003_CAR01_Mistake_S03.png|B003_CAR01_Mistake_S04.png",CAROUSEL 01,CAROUSEL 01,save+send,PENDING_APPROVAL
+B003_REEL01,reel,"B003_REEL01_RealPhrase_Cover.png|REEL_01_oncamera_draft.md|REEL_01_subtitles.srt",REEL 01,REEL 01,follow,PENDING_FOOTAGE
+B003_CAR02,carousel,"B003_CAR02_Study_S01.png|B003_CAR02_Study_S02.png|B003_CAR02_Study_S03.png|B003_CAR02_Study_S04.png",CAROUSEL 02,CAROUSEL 02,share,PENDING_APPROVAL
+B003_REEL02,reel,"B003_REEL02_BJJ_Cover.png|REEL_02_oncamera_draft.md|REEL_02_subtitles.srt",REEL 02,REEL 02,watch_more,PENDING_FOOTAGE
+B003_CAR03,carousel,"B003_CAR03_SRS_S01.png|B003_CAR03_SRS_S02.png|B003_CAR03_SRS_S03.png|B003_CAR03_SRS_S04.png",CAROUSEL 03,CAROUSEL 03,comment,PENDING_APPROVAL

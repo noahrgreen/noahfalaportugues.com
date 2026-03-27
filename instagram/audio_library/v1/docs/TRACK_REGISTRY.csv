@@ -1,0 +1,6 @@
+track_id,file_mp3,file_wav,duration_sec,style,tags,loop_ready,voice_mix_target_db,notes
+NFP_TRK_001,tracks/NFP_TRK_001_brazilian_ambient_calm_conversational_60s.mp3,tracks/NFP_TRK_001_brazilian_ambient_calm_conversational_60s.wav,60,brazilian_ambient,"calm|conversational",yes,-24,"Atmospheric base layer for reflective reels"
+NFP_TRK_002,tracks/NFP_TRK_002_study_lofi_study_calm_75s.mp3,tracks/NFP_TRK_002_study_lofi_study_calm_75s.wav,75,study_lofi,"study|calm",yes,-24,"Soft pulse for study process content"
+NFP_TRK_003,tracks/NFP_TRK_003_neutral_background_conversational_calm_45s.mp3,tracks/NFP_TRK_003_neutral_background_conversational_calm_45s.wav,45,neutral_background,"conversational|calm",yes,-25,"Neutral bed under voice explanations"
+NFP_TRK_004,tracks/NFP_TRK_004_bjj_pulse_bjj_conversational_60s.mp3,tracks/NFP_TRK_004_bjj_pulse_bjj_conversational_60s.wav,60,bjj_pulse,"bjj|conversational",yes,-23,"Rhythmic but restrained for BJJ phrase reels"
+NFP_TRK_005,tracks/NFP_TRK_005_study_neutral_calm_study_90s.mp3,tracks/NFP_TRK_005_study_neutral_calm_study_90s.wav,90,study_neutral,"study|calm|conversational",yes,-24,"Long-form neutral study soundtrack"

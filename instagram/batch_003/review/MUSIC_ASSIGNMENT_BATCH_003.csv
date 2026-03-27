@@ -1,0 +1,6 @@
+content_id,format,recommended_track_file,category,reason,mix_note
+B003_CAR01,carousel,brazil_ambient_02.mp3,brazil_ambient,"neutral and clear for correction content",optional low bed only if rendered as motion
+B003_REEL01,reel,brazil_ambient_01.mp3,brazil_ambient,"calm conversational phrase delivery",set music ~24 dB under voice
+B003_CAR02,carousel,study_lofi_01.mp3,study_lofi,"study-process context with soft pulse",optional low bed only if rendered as motion
+B003_REEL02,reel,bjj_01.mp3,bjj,"BJJ context with restrained rhythmic energy",set music ~23 dB under voice
+B003_CAR03,carousel,study_lofi_02.mp3,study_lofi,"SRS explainer with steady non-distracting tone",optional low bed only if rendered as motion

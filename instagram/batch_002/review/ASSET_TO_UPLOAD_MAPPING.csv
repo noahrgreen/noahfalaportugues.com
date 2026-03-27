@@ -1,0 +1,6 @@
+content_id,format,approved_asset(s),caption_block,hashtag_block,upload_order,upload_window_local,status
+CAR01,carousel,"CAR_01_Mistake_S01.png|CAR_01_Mistake_S02.png|CAR_01_Mistake_S03.png|CAR_01_Mistake_S04.png",CAROUSEL 01,CAROUSEL 01,1,09:00-12:00,PENDING_APPROVAL
+REEL01,reel,"REEL_01_RealPhrase_Cover.png|REEL_01_RealPhrase_storyboard.md",REEL 01,REEL 01,2,09:00-12:00,PENDING_APPROVAL
+CAR02,carousel,"CAR_02_Study_S01.png|CAR_02_Study_S02.png|CAR_02_Study_S03.png|CAR_02_Study_S04.png",CAROUSEL 02,CAROUSEL 02,3,09:00-12:00,PENDING_APPROVAL
+REEL02,reel,"REEL_02_BJJPhrase_Cover.png|REEL_02_BJJPhrase_storyboard.md",REEL 02,REEL 02,4,09:00-12:00,PENDING_APPROVAL
+CAR03,carousel,"CAR_03_SRS_S01.png|CAR_03_SRS_S02.png|CAR_03_SRS_S03.png|CAR_03_SRS_S04.png",CAROUSEL 03,CAROUSEL 03,5,09:00-12:00,PENDING_APPROVAL

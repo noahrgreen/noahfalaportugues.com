@@ -1,0 +1,7 @@
+track_file,category,mood,tempo_bpm,use_case,voice_mix_percent,mix_guidance
+brazil_ambient_01.mp3,brazil_ambient,"calm|warm|conversational",72,"phrase reels|cultural posts",12,"keep voice dominant; music low and stable"
+brazil_ambient_02.mp3,brazil_ambient,"calm|neutral|conversational",68,"explanation reels|reflection posts",10,"use when voice detail is dense"
+study_lofi_01.mp3,study_lofi,"focused|disciplined|neutral",78,"SRS content|study process",14,"steady low bed under spoken explanation"
+study_lofi_02.mp3,study_lofi,"focused|calm|structured",70,"flashcard content|method posts",12,"avoid boosting above transitions"
+cinematic_01.mp3,cinematic,"reflective|thoughtful|elevated",66,"important statements|key reels",15,"use sparingly for emphasis"
+bjj_01.mp3,bjj,"focused|controlled_intensity|conversational",84,"BJJ reels|training context",16,"keep transient peaks below voice consonants"
