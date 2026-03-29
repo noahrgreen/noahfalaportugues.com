@@ -27,3 +27,7 @@ After ingest, CS will:
 3. assign final library filename
 4. move final file into category folder
 5. update `music/docs/TRACK_METADATA.csv`
+6. deduplicate by audio hash to prevent repeat imports
+
+Run check without writing:
+`/Users/noahgreen/NGO/noahfalaportugues.com/music/scripts/ingest_inbox.sh --dry-run`

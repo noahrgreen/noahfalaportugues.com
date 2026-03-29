@@ -2,6 +2,12 @@
 
 Use this sheet when generating new music in Suno.
 
+## Fast Presets (Copy First)
+1. `Brazil Ambient Core`: Weirdness `24`, Style influence `92`
+2. `Study Lofi Core`: Weirdness `18`, Style influence `95`
+3. `Cinematic Light Core`: Weirdness `30`, Style influence `88`
+4. `BJJ Context Core`: Weirdness `22`, Style influence `94`
+
 ## Global Constraints (all tracks)
 - Instrumental only
 - No vocals
@@ -34,6 +40,14 @@ Add one row per file in:
 Prompt block:
 "Instrumental Brazilian bossa nova style, soft acoustic guitar, minimal percussion, warm and calm, no vocals, background music for speaking, clean and modern."
 
+Field block:
+- Styles: `instrumental, brazilian-inspired, bossa nova light, acoustic guitar, minimal percussion, warm`
+- Weirdness: `24`
+- Style influence: `92`
+- Inspo: `Rio atmosphere, calm conversation, cultural context`
+- Persona: `Disciplined adult learner, thoughtful and grounded`
+- Audio: `No vocals, no lyrics, 72 BPM target, 60s target, clean loop, speech-safe`
+
 ---
 
 ## Category B — Study / Lo-fi
@@ -49,6 +63,14 @@ Prompt block:
 
 Prompt block:
 "Instrumental lo-fi study beat, minimal drums, soft textures, calm and steady, no vocals, background for educational content."
+
+Field block:
+- Styles: `instrumental, lofi study, soft textures, minimal beat, neutral`
+- Weirdness: `18`
+- Style influence: `95`
+- Inspo: `SRS review sessions, focused study blocks, repetition`
+- Persona: `Structured operator, calm, consistency over intensity`
+- Audio: `No vocals, no lyrics, 78 BPM target, 75s target, clean loop`
 
 ---
 
@@ -66,6 +88,14 @@ Prompt block:
 Prompt block:
 "Minimal cinematic ambient instrumental, soft pads, slow progression, calm and reflective, no vocals, background for thoughtful content."
 
+Field block:
+- Styles: `instrumental, cinematic ambient, soft pads, minimal percussion, reflective`
+- Weirdness: `30`
+- Style influence: `88`
+- Inspo: `Important messages, thoughtful transitions, reflective tone`
+- Persona: `Clear, intentional, composed`
+- Audio: `No vocals, no lyrics, 66 BPM target, 72s target, clean loop`
+
 ---
 
 ## Category D — BJJ Context
@@ -81,6 +111,14 @@ Prompt block:
 
 Prompt block:
 "Instrumental minimal rhythmic background, controlled intensity, tight low percussion, calm and focused energy, no vocals, suitable for Brazilian Jiu-Jitsu context and spoken voice."
+
+Field block:
+- Styles: `instrumental, minimal rhythm, controlled intensity, tight percussion, focused`
+- Weirdness: `22`
+- Style influence: `94`
+- Inspo: `Mat coaching cues, controlled pressure, practical training context`
+- Persona: `Calm under pressure, direct, practical`
+- Audio: `No vocals, no lyrics, 84 BPM target, 60s target, clean loop, voice-safe`
 
 ---
 

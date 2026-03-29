@@ -29,3 +29,13 @@ Masters are stored in `_masters/` as WAV.
 5. CS does not access Suno directly; Noah generates and drops exports in `music/inbox/`.
 
 See `docs/` for prompts, metadata, QA, and content mapping.
+
+## Fast Ops Commands
+- Queue a new Suno export:
+  `music/scripts/queue_inbox.sh <audio_path> <category> <mood> <tempo_bpm> <use_case> <prompt_version> [notes]`
+- Dry-run ingest validation:
+  `music/scripts/ingest_inbox.sh --dry-run`
+- Ingest one file:
+  `music/scripts/ingest_inbox.sh --only <source_file>`
+- Status snapshot:
+  `music/scripts/library_status.sh`

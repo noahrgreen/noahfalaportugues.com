@@ -10,8 +10,57 @@ MANIFEST="$INBOX/inbox_manifest.csv"
 META="$DOCS/TRACK_METADATA.csv"
 TECH="$DOCS/TRACK_TECHNICAL_SPECS.csv"
 INGEST_LOG="$DOCS/INGEST_LOG.csv"
+HASH_DB="$DOCS/INGEST_HASHES.csv"
+
+DRY_RUN=false
+SELECT_ONLY=""
+
+usage() {
+  cat <<USAGE
+Usage:
+  ingest_inbox.sh [--dry-run] [--only <source_file>] [--help]
+
+Options:
+  --dry-run          Validate and simulate ingest without writing files
+  --only <file>      Process only one manifest source_file entry
+  --help             Show this help text
+USAGE
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run)
+      DRY_RUN=true
+      shift
+      ;;
+    --only)
+      SELECT_ONLY="${2:-}"
+      if [[ -z "$SELECT_ONLY" ]]; then
+        echo "Missing value for --only" >&2
+        exit 1
+      fi
+      shift 2
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+done
 
 mkdir -p "$PROCESSED" "$MASTERS" "$DOCS"
+
+for bin in ffmpeg ffprobe shasum; do
+  if ! command -v "$bin" >/dev/null 2>&1; then
+    echo "Missing required dependency: $bin" >&2
+    exit 1
+  fi
+done
 
 if [[ ! -f "$MANIFEST" ]]; then
   echo "Missing manifest: $MANIFEST" >&2
@@ -20,6 +69,10 @@ fi
 
 if [[ ! -f "$INGEST_LOG" ]]; then
   echo "ingested_at,source_file,category,output_file,prompt_version,status,notes" > "$INGEST_LOG"
+fi
+
+if [[ ! -f "$HASH_DB" ]]; then
+  echo "sha256,source_file,output_file,ingested_at" > "$HASH_DB"
 fi
 
 if [[ ! -f "$META" ]]; then
@@ -88,6 +141,9 @@ while IFS=',' read -r source_file category mood tempo_bpm use_case prompt_versio
   if [[ "${source_file:0:1}" == "#" ]]; then
     continue
   fi
+  if [[ -n "$SELECT_ONLY" && "$source_file" != "$SELECT_ONLY" ]]; then
+    continue
+  fi
 
   if [[ "$category" != "brazil_ambient" && "$category" != "study_lofi" && "$category" != "cinematic" && "$category" != "bjj" ]]; then
     echo "Skipping $source_file: invalid category '$category'"
@@ -102,11 +158,33 @@ while IFS=',' read -r source_file category mood tempo_bpm use_case prompt_versio
     continue
   fi
 
+  case "${src##*.}" in
+    mp3|MP3|wav|WAV|m4a|M4A|flac|FLAC) ;;
+    *)
+      echo "Skipping $source_file: unsupported extension"
+      skipped_count=$((skipped_count + 1))
+      continue
+      ;;
+  esac
+
+  src_hash="$(shasum -a 256 "$src" | awk '{print $1}')"
+  if grep -q "^${src_hash}," "$HASH_DB"; then
+    echo "Skipping $source_file: duplicate audio hash already ingested"
+    skipped_count=$((skipped_count + 1))
+    continue
+  fi
+
   idx="$(next_index "$category")"
   out_mp3="$ROOT/$category/${category}_${idx}.mp3"
   out_wav="$MASTERS/${category}_${idx}.wav"
 
-  ffmpeg -y -i "$src" -vn -ar 48000 -ac 2 -codec:a libmp3lame -b:a 192k "$out_mp3" >/dev/null 2>&1
+  if [[ "$DRY_RUN" == true ]]; then
+    echo "DRY RUN: would ingest $source_file -> $(basename "$out_mp3")"
+    processed_count=$((processed_count + 1))
+    continue
+  fi
+
+  ffmpeg -y -i "$src" -vn -ar 48000 -ac 2 -af "loudnorm=I=-21:TP=-2:LRA=7" -codec:a libmp3lame -b:a 192k "$out_mp3" >/dev/null 2>&1
   ffmpeg -y -i "$src" -vn -ar 48000 -ac 2 "$out_wav" >/dev/null 2>&1
 
   # Add metadata row (CSV-safe; commas sanitized to semicolons)
@@ -133,7 +211,22 @@ while IFS=',' read -r source_file category mood tempo_bpm use_case prompt_versio
     "${notes:-ok}" \
     >> "$INGEST_LOG"
 
+  printf '%s,%s,%s,%s\n' \
+    "$src_hash" \
+    "$source_file" \
+    "$(basename "$out_mp3")" \
+    "$ingested_at" \
+    >> "$HASH_DB"
+
   mv "$src" "$PROCESSED/${ingested_at//[:]/-}_$source_file"
+  # Remove processed row(s) from manifest by source_file to keep queue clean.
+  tmp_manifest="$(mktemp)"
+  {
+    head -n 1 "$MANIFEST"
+    tail -n +2 "$MANIFEST" | awk -F',' -v src="$source_file" '$1 != src'
+  } > "$tmp_manifest"
+  mv "$tmp_manifest" "$MANIFEST"
+
   processed_count=$((processed_count + 1))
   echo "Ingested: $source_file -> $(basename "$out_mp3")"
 done < <(tail -n +2 "$MANIFEST" || true)
